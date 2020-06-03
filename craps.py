@@ -8,3 +8,24 @@ import numpy as np
 def roll(iterations):
     return np.random.randint(1, 7, size=iterations) + np.random.randint(1, 7, size=iterations)
 
+def playGames(numGames):
+    # Part 1
+    games = roll(numGames)
+
+    ## Initial Wins (7, 11)
+    wins = np.where((games == 7) | (games == 11))
+    games = np.delete(games, wins)
+    numWins = np.size(wins)
+
+    ## Initial Losses (2, 3, 12)
+    losses = np.where((games == 2) | (games == 3) | (games == 12))
+    games = np.delete(games, losses)
+    numLosses = np.size(losses)
+
+    return (numWins, numLosses)
+
+
+NUM_GAMES = 1000000
+results = playGames(NUM_GAMES)
+print(results[0] / NUM_GAMES)
+print(results[1] / NUM_GAMES)
