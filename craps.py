@@ -1,14 +1,42 @@
 """
 Plays many games of Craps to find the probability of winning.
-Uses numpy to increase speed.
+Uses numpy to increase speed using ndarrays and masks.
 """
 
 import numpy as np
 
 def roll(iterations):
+    """
+    Rolls two dice the specified number of times.
+
+    Parameters
+    ----------
+    iterations: int
+        The number of times to roll the dice.
+    
+    Returns
+    -------
+    ndarray
+        The results of the dice rolls.
+    """
     return np.random.randint(1, 7, size=iterations) + np.random.randint(1, 7, size=iterations)
 
 def playGames(numGames):
+    """
+    Plays the game of Craps the specified number of times.
+    Uses masks generated win np.where() with ndarrays to quickly find the results of each game.
+    When a game is complete (won or lost), it is removed from the ndarray of games.
+
+    Parameters
+    ----------
+    numGames: int
+        The number of games to play.
+    
+    Returns
+    -------
+    Tuple (int, int)
+        The number of wins and the number of losses.
+    """
     # Part 1
     games = roll(numGames)
 
@@ -41,7 +69,10 @@ def playGames(numGames):
     return (numWins, numLosses)
 
 
-NUM_GAMES = 1000000
-results = playGames(NUM_GAMES)
-print(results[0] / NUM_GAMES)
-print(results[1] / NUM_GAMES)
+if __name__ == '__main__':
+    NUM_GAMES = 10000000
+
+    results = playGames(NUM_GAMES)
+
+    print("Win Ratio:", (results[0] / NUM_GAMES))
+    print("Loss Ratio:", (results[1] / NUM_GAMES))
