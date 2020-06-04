@@ -14,4 +14,11 @@
         - Loss if 7
 ```
 
+## Results
+
 This is a method to find the probability of winning craps by simulating the game a large number of times.
+Speed is increased by using numpy arrays and masks to store the games and find results.
+
+Using 10 million iterations, the solution results in a win 49.2% of the time.
+
+Using 10 million iterations, the solution takes 1.4 seconds. Using 1 million iterations, the solution takes 0.13 seconds.
