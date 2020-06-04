@@ -22,6 +22,22 @@ def playGames(numGames):
     games = np.delete(games, losses)
     numLosses = np.size(losses)
 
+    # Part 2
+    while(np.size(games) != 0):
+        # Reroll for each game not won/lost
+        newRolls = roll(np.size(games))
+
+        # Win if same on reroll
+        wins = np.where(games == newRolls)
+        numWins += np.size(wins)
+        games = np.delete(games, wins)
+        newRolls = np.delete(newRolls, wins)
+
+        # Lose if reroll is 7
+        losses = np.where(newRolls == 7)
+        numLosses += np.size(losses)
+        games = np.delete(games, losses)
+
     return (numWins, numLosses)
 
 
