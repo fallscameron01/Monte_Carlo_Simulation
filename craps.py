@@ -70,9 +70,14 @@ def playGames(numGames):
 
 
 if __name__ == '__main__':
+    import timeit
+
     NUM_GAMES = 10000000
 
     results = playGames(NUM_GAMES)
 
     print("Win Ratio:", (results[0] / NUM_GAMES))
     print("Loss Ratio:", (results[1] / NUM_GAMES))
+
+    print("Execution time for 1 million iterations is: ", timeit.timeit(lambda : playGames(1000000), number=1))
+    print("Execution time for 10 million iterations is: ", timeit.timeit(lambda : playGames(NUM_GAMES), number=1))
